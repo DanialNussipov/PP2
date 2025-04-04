@@ -58,7 +58,7 @@ while running:
      # generating cars randomly
      enemy_car_y += 10
      if enemy_car_y > height:
-          enemy_car_x = random.randint(20, 190)
+          enemy_car_x = random.randint(20, width - enemy_car.get_width() - 20)
           enemy_car_y = - 100
           score += 1
           
