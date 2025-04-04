@@ -58,7 +58,7 @@ while running:
      # generating cars randomly
      enemy_car_y += 10
      if enemy_car_y > height:
-          enemy_car_x = random.randint(20, 240)
+          enemy_car_x = random.randint(20, 190)
           enemy_car_y = - 100
           score += 1
           
@@ -74,8 +74,8 @@ while running:
           coin_x = random.randint(20, 250)
      # checking if car collapsed with another car
      if car_rect.colliderect(enemy_car_rect):
-          gameover = pygame.image.load(r"C:\Users\Danial\Desktop\UNIVERSITY\PP2\Lab8\racer\gameover.jpg")
-          screen.blit(gameover, (-30, 0))
+          gameover = pygame.image.load(r"C:\Users\Danial\Desktop\UNIVERSITY\PP2\Lab8\racer\gameover.png")
+          screen.blit(gameover, (-30, -30))
           pygame.display.flip()
           pygame.time.delay(2000)
           pygame.quit()
