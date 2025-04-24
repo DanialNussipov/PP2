@@ -1,5 +1,6 @@
 # Implement deleting data from tables by username of phone
 import psycopg2
+from tabulate import tabulate
 
 conn = psycopg2.connect(
      host="localhost",
@@ -11,8 +12,8 @@ cur = conn.cursor()
 print("--- Phonebook ---")
 cur.execute("SELECT * FROM phonebook")
 rows = cur.fetchall()
-for row in rows:
-     print(row)
+headers = ["ID", "Surname", "Name", "Phone"]
+print(tabulate(rows, headers = headers, tablefmt = "pretty"))
 
 name = input("Enter name whos information you want to delete: ")
 surname = input("Enter surname whos information you want to delete: ")
@@ -25,8 +26,8 @@ if user:
      print("--- Phonebook ---")
      cur.execute("SELECT * FROM phonebook")
      rows = cur.fetchall()
-     for row in rows:
-          print(row)
+     headers = ["ID", "Surname", "Name", "Phone"]
+     print(tabulate(rows, headers = headers, tablefmt = "pretty"))
      print("Information deleted successfully!")
 else:
      print("There is no user with this name/surname")

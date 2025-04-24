@@ -1,5 +1,6 @@
 # Querying data from the tables (with different filters)
 import psycopg2
+from tabulate import tabulate
 
 conn = psycopg2.connect(
      host = "localhost",
@@ -13,8 +14,8 @@ done = False
 print("--- Phonebook ---")
 cur.execute("SELECT * FROM phonebook")
 rows = cur.fetchall()
-for row in rows:
-    print(row)
+headers = ["ID", "Surname", "Name", "Phone"]
+print(tabulate(rows, headers = headers, tablefmt = "pretty"))
               
 print("How you want to sort table?:")
 print("1.In ascending order")
@@ -59,8 +60,8 @@ if action == 2:
 if done:
      print("--- Phonebook ---")
      rows = cur.fetchall()
-     for row in rows:
-          print(row)
+     headers = ["ID", "Surname", "Name", "Phone"]
+     print(tabulate(rows, headers = headers, tablefmt = "pretty"))
      print("Information filtered")
 else:
      print("Something went wrong:(")

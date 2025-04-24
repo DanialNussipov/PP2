@@ -2,6 +2,7 @@
 Implement updating data in the table (change user first name or phone)
 """
 import psycopg2
+from tabulate import tabulate
 
 conn = psycopg2.connect(
      host = "localhost",
@@ -14,8 +15,8 @@ cur = conn.cursor()
 print("--- Phonebook ---")
 cur.execute("SELECT * FROM phonebook")
 rows = cur.fetchall()
-for row in rows:
-    print(row)
+headers = ["ID", "Surname", "Name", "Phone"]
+print(tabulate(rows, headers = headers, tablefmt = "pretty"))
     
 surname_to_update = input("Enter surname whos info you want to change: ")
 
@@ -52,8 +53,8 @@ if user:
      print("--- Phonebook ---")
      cur.execute("SELECT * FROM phonebook")
      rows = cur.fetchall()
-     for row in rows:
-          print(row)
+     headers = ["ID", "Surname", "Name", "Phone"]
+     print(tabulate(rows, headers = headers, tablefmt = "pretty"))
      print("Information changed successfully!")
 
     

@@ -5,6 +5,7 @@ entering user name, phone from console
 """
 import psycopg2
 import csv
+from tabulate import tabulate
 
 conn = psycopg2.connect(
      host = "localhost",
@@ -28,12 +29,11 @@ insert = ("INSERT INTO phonebook (Surname, Name, Phone) VALUES (%s, %s, %s) ON C
 insert2 = (Surname, Name, Phone)
 cur.execute(insert, insert2)
 
-print("--- Phonebook ---")
 cur.execute("SELECT * FROM phonebook")
 rows = cur.fetchall()
-for row in rows:
-    print(row)
-    
+headers = ["ID", "Surname", "Name", "Phone"]
+print(tabulate(rows, headers = headers, tablefmt = "pretty"))
+     
 conn.commit()
 cur.close()
 conn.close()

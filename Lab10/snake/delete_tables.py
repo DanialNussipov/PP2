@@ -8,7 +8,8 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-cur.execute("TRUNCATE TABLE phonebook")
+cur.execute("DROP TABLE user_score")
+cur.execute("DROP TABLE users")
 
 conn.commit()
 cur.close()

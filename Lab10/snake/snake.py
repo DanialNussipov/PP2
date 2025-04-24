@@ -1,4 +1,5 @@
 import pygame, sys, random, psycopg2
+from tabulate import tabulate
 
 conn = psycopg2.connect(
      host="localhost",
@@ -83,6 +84,17 @@ def pause_game():
           for event in pygame.event.get():
                if event.type == pygame.QUIT:
                     save_state(user_id, score, level, coins_eaten)
+                    print("-----USERS-----")
+                    cur.execute("SELECT * FROM users")
+                    rows = cur.fetchall()
+                    headers = ["user_id", "username"]
+                    print(tabulate(rows, headers = headers, tablefmt = "pretty"))
+                    
+                    print("-----SCORES-----")
+                    cur.execute("SELECT * FROM user_score")
+                    rows = cur.fetchall()
+                    headers = ["user_id", "score", "level", "coins eaten"]
+                    print(tabulate(rows, headers = headers, tablefmt = "pretty"))
                     pygame.quit()
                     sys.exit()
                elif event.type == pygame.KEYDOWN:
@@ -105,6 +117,18 @@ def game_over_screen():
           for event in pygame.event.get():
                if event.type == pygame.QUIT:
                     save_state(user_id, score, level, coins_eaten)
+                    print("-----USERS-----")
+                    cur.execute("SELECT * FROM users")
+                    rows = cur.fetchall()
+                    headers = ["user_id", "username"]
+                    print(tabulate(rows, headers = headers, tablefmt = "pretty"))
+                    
+                    print("-----SCORES-----")
+                    cur.execute("SELECT * FROM user_score")
+                    rows = cur.fetchall()
+                    headers = ["user_id", "score", "level", "coins eaten"]
+                    print(tabulate(rows, headers = headers, tablefmt = "pretty"))
+                    
                     pygame.quit()
                     sys.exit()
                     # if type r - restart game
@@ -142,6 +166,17 @@ while True:
           for event in pygame.event.get():
                if event.type == pygame.QUIT:
                     save_state(user_id, score, level, coins_eaten)
+                    print("-----USERS-----")
+                    cur.execute("SELECT * FROM users")
+                    rows = cur.fetchall()
+                    headers = ["user_id", "username"]
+                    print(tabulate(rows, headers = headers, tablefmt = "pretty"))
+                    
+                    print("-----SCORES-----")
+                    cur.execute("SELECT * FROM user_score")
+                    rows = cur.fetchall()
+                    headers = ["user_id", "score", "level", "coins eaten"]
+                    print(tabulate(rows, headers = headers, tablefmt = "pretty"))
                     pygame.quit()
                     sys.exit()
                # moving elements
@@ -228,5 +263,6 @@ while True:
           # control game speed
           pygame.display.flip()
           clock.tick(speed)
+          
 
 pygame.quit()
