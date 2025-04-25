@@ -1,6 +1,5 @@
 import psycopg2
 
-# Подключение к базе данных
 conn = psycopg2.connect(
     host="localhost",
     dbname="lab10",
